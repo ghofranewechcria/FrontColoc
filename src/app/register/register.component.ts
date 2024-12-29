@@ -1,47 +1,36 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  firstname: string = '';
-  lastname: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  firstname = '';
+  lastname = '';
+  email = '';
+  password = '';
+  role: string = 'COLOCATAIRE'; // Valeur par défaut : Colocataire
+
+  successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
-  register() {
-    // Vérifier que les mots de passe correspondent
-    if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Les mots de passe ne correspondent pas.';
-      return;
-    }
-
-    // Construire la requête pour le backend
-    const registerRequest = {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.email,
-      password: this.password,
-    };
-
-    // Envoyer la requête HTTP au backend
-    this.http.post('http://localhost:8082/api/auth/register', registerRequest).subscribe({
+  onSignup() {
+    // Envoie du formulaire avec les données et le rôle choisi
+    this.authService.signup(this.firstname, this.lastname, this.email, this.password, this.role).subscribe({
       next: (response) => {
-        console.log('Inscription réussie', response);
-        this.router.navigate(['/login']); // Rediriger vers la page de connexion
+        console.log('Signup successful:', response);
+        this.successMessage = 'Signup successful! You can now log in.';
+        this.errorMessage = '';
       },
       error: (error) => {
-        console.error('Erreur lors de l’inscription', error);
-        this.errorMessage = 'Une erreur s’est produite lors de l’inscription. Veuillez réessayer.';
-      },
+        console.error('Signup error:', error);
+        this.errorMessage = 'Signup failed. Please try again.';
+        this.successMessage = '';
+      }
     });
   }
 }

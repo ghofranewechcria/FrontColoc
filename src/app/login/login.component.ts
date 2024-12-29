@@ -13,7 +13,9 @@ export class LoginComponent {
   password = '';
   firstname = '';
   lastname = '';
+  role = '';
   errorMessage = '';
+
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -46,7 +48,7 @@ export class LoginComponent {
 
   // Méthode d'inscription
   onSignup() {
-    this.authService.signup(this.firstname, this.lastname, this.email, this.password).subscribe({
+    this.authService.signup(this.firstname, this.lastname, this.email, this.password, this.role).subscribe({
       next: (response) => {
         console.log('Signup successful:', response);
         alert('Signup successful! You can now log in.');
