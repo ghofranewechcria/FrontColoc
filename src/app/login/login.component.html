@@ -1,0 +1,65 @@
+<div class="login-container">
+    <div class="form-box">
+      <div class="tabs">
+        <button 
+          class="tab-button" 
+          [class.active]="isLoginMode" 
+          (click)="toggleMode(true)">Login</button>
+        <button 
+          class="tab-button" 
+          [class.active]="!isLoginMode" 
+          (click)="toggleMode(false)">Signup</button>
+      </div>
+  
+      <!-- Login Form -->
+      <form *ngIf="isLoginMode" (submit)="onLogin()">
+        <h2>Login Form</h2>
+        <input 
+          type="email" 
+          placeholder="Email Address" 
+          [(ngModel)]="email" 
+          name="email" 
+          required />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          [(ngModel)]="password" 
+          name="password" 
+          required />
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <button type="submit" class="submit-button">Login</button>
+        <p class="signup-link">Not a member? <a (click)="toggleMode(false)">Signup now</a></p>
+      </form>
+  
+      <!-- Signup Form -->
+      <form *ngIf="!isLoginMode" (submit)="onSignup()">
+        <h2>Signup Form</h2>
+        <input 
+          type="text" 
+          placeholder="First Name" 
+          [(ngModel)]="firstname" 
+          name="firstname" 
+          required />
+        <input 
+          type="text" 
+          placeholder="Last Name" 
+          [(ngModel)]="lastname" 
+          name="lastname" 
+          required />
+        <input 
+          type="email" 
+          placeholder="Email Address" 
+          [(ngModel)]="email" 
+          name="email" 
+          required />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          [(ngModel)]="password" 
+          name="password" 
+          required />
+        <button type="submit" class="submit-button">Signup</button>
+      </form>
+    </div>
+  </div>
+  
