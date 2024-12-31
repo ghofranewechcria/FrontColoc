@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,4 +25,15 @@ export class AuthService {
     const body = { firstname, lastname, email, password, role };
     return this.http.post(`${this.apiUrl}/api/auth/register`, body);
   }
+  getUserProfile(): Observable<any> {
+    // Récupérer le token d'authentification du stockage local ou du cookie
+    const token = localStorage.getItem('token');
+    
+    // Ajouter le token dans les en-têtes de la requête
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(`${this.apiUrl}/api/users/profile`, { headers });
+  }
 }
+ 
+

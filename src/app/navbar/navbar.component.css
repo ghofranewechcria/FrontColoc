@@ -1,0 +1,53 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(to right, #004e92, #000428);
+    color: white;
+  
+    .logo a {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+  
+    .user-menu {
+      position: relative;
+  
+      .user-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+  
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        color: #333;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 150px;
+  
+        li {
+          padding: 0.5rem 1rem;
+  
+          a {
+            text-decoration: none;
+            color: #004e92;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+  

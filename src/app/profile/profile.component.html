@@ -1,0 +1,43 @@
+<app-navbar
+></app-navbar>
+
+<div class="profile-container">
+    <div class="profile-box">
+      <h2>User Profile</h2>
+      <div *ngIf="userProfile; else loading">
+        <div *ngIf="userProfile.firstName || userProfile.lastName" class="profile-item">
+          <strong>Name:</strong>
+          <span>{{ userProfile.firstName }} {{ userProfile.lastName }}</span>
+        </div>
+        <div *ngIf="userProfile.email" class="profile-item">
+          <strong>Email:</strong>
+          <span>{{ userProfile.email }}</span>
+        </div>
+        <div *ngIf="userProfile.numTel" class="profile-item">
+          <strong>Phone:</strong>
+          <span>{{ userProfile.numTel }}</span>
+        </div>
+        <div *ngIf="userProfile.budget" class="profile-item">
+          <strong>Budget:</strong>
+          <span>{{ userProfile.budget | currency }}</span>
+        </div>
+        <div *ngIf="userProfile.typelogementprefere" class="profile-item">
+          <strong>Preferred Housing Type:</strong>
+          <span>{{ userProfile.typelogementprefere }}</span>
+        </div>
+        <div *ngIf="userProfile.localisationprefere" class="profile-item">
+          <strong>Preferred Location:</strong>
+          <span>{{ userProfile.localisationprefere }}</span>
+        </div>
+      </div>
+  
+      <ng-template #loading>
+        <p>Loading user profile...</p>
+      </ng-template>
+  
+      <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+  
