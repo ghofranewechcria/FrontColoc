@@ -25,6 +25,7 @@ export class AuthService {
     const body = { firstname, lastname, email, password, role };
     return this.http.post(`${this.apiUrl}/api/auth/register`, body);
   }
+
   getUserProfile(): Observable<any> {
     // Récupérer le token d'authentification du stockage local ou du cookie
     const token = localStorage.getItem('token');
@@ -34,6 +35,27 @@ export class AuthService {
 
     return this.http.get(`${this.apiUrl}/api/users/profile`, { headers });
   }
+
+  completeUserProfile(userProfile: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    console.log('Token dans AuthService:', token); // Vérifiez le token ici.
+  
+    const headers = new HttpHeaders().set('Authorization', `Bearer`+token);
+    const formData = new FormData();
+    Object.keys(userProfile).forEach((key) => {
+      if (userProfile[key] !== null && userProfile[key] !== undefined) {
+        formData.append(key, userProfile[key]);
+      }
+    });
+  
+    return this.http.put(`${this.apiUrl}/api/users/profile`, formData, { headers });
+  }
+  
+  
+  
+  
+
+  
 }
  
 

@@ -1,7 +1,7 @@
 <app-navbar
 ></app-navbar>
 
-<div class="profile-container">
+<div class="profile-container" *ngIf="updateprofile==false">
     <div class="profile-box">
       <h2>User Profile</h2>
       <div *ngIf="userProfile; else loading">
@@ -38,6 +38,61 @@
       <div *ngIf="errorMessage" class="error-message">
         <p>{{ errorMessage }}</p>
       </div>
+      <button (click)="updateprofile=true" class="complete-profile-button">Complete profile</button>
     </div>
   </div>
   
+
+
+
+<div class="profile-container" *ngIf="updateprofile==true">
+  <div class="profile-box">
+    <h2>User Profile</h2>
+    <form *ngIf="userProfile; else loading" (ngSubmit)="onSubmit()">
+      <div class="profile-item">
+        <label for="firstName"><strong>First Name:</strong></label>
+        <input type="text" id="firstName" [(ngModel)]="userProfile.firstName" name="firstName" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="lastName"><strong>Last Name:</strong></label>
+        <input type="text" id="lastName" [(ngModel)]="userProfile.lastName" name="lastName" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="email"><strong>Email:</strong></label>
+        <input type="email" id="email" [(ngModel)]="userProfile.email" name="email" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="numTel"><strong>Phone:</strong></label>
+        <input type="tel" id="numTel" [(ngModel)]="userProfile.numTel" name="numTel" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="budget"><strong>Budget:</strong></label>
+        <input type="number" id="budget" [(ngModel)]="userProfile.budget" name="budget" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="typelogementprefere"><strong>Preferred Housing Type:</strong></label>
+        <input type="text" id="typelogementprefere" [(ngModel)]="userProfile.typelogementprefere" name="typelogementprefere" required>
+      </div>
+      
+      <div class="profile-item">
+        <label for="localisationprefere"><strong>Preferred Location:</strong></label>
+        <input type="text" id="localisationprefere" [(ngModel)]="userProfile.localisationprefere" name="localisationprefere" required>
+      </div>
+      
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <ng-template #loading>
+      <p>Loading user profile...</p>
+    </ng-template>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>

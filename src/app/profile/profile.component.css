@@ -63,6 +63,23 @@
     font-size: 1.2rem;
     margin-top: 20px;
   }
+
+  .complete-profile-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #004e92, #000428);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+    &:hover {
+      background: linear-gradient(to right, #003972, #000316);
+    }
+  }
+  
   
   /* Responsive Design pour les petits écrans */
   @media (max-width: 768px) {

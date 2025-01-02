@@ -8,7 +8,9 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component'; // Pour les appels HTTP
+import { ProfileComponent } from './profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LogementComponent } from './logement/logement.component'; // Pour les appels HTTP
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import { ProfileComponent } from './profile/profile.component'; // Pour les appe
     RegisterComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule, // Ajouter FormsModule ici
     HttpClientModule // Ajouter HttpClientModule pour les requêtes API
   ],

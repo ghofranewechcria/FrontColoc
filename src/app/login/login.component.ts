@@ -25,7 +25,6 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        
 
         // Stocker le token si nécessaire
         if (response.token) {
@@ -33,7 +32,7 @@ export class LoginComponent {
         }
 
         // Redirection vers la page d'accueil
-        this.router.navigate(['/home']);
+        this.router.navigate(['/logement']);
       },
       error: (error) => {
         console.error('Login error:', error);
@@ -67,3 +66,4 @@ export class LoginComponent {
       });
   }
 }
+
