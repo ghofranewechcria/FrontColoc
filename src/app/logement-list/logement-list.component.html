@@ -1,0 +1,52 @@
+<head>
+ 
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://66b4197244202234ngrokfreeapp.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/66b4197244202234ngrokfreeapp.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+<!-- End Matomo Code -->
+
+
+</head>
+<app-navbar></app-navbar>
+<app-logement></app-logement>
+
+<div *ngFor="let logement of logements" class="logement-container">
+    <div class="logement">
+      <h3>{{ logement.description }}</h3>
+  
+      <p><strong>Adresse :</strong> {{ logement.adresse }}</p>
+      <p><strong>Prix :</strong> {{ logement.prix }} DT</p>
+      <p><strong>Description :</strong> {{ logement.description }}</p>
+      <p><strong>Equipement disponible :</strong> {{ logement.equipDispo }}</p>
+      <p><strong>Date de disponibilité :</strong> {{ logement.dateDisponibilite | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Nombre de places libres :</strong> {{ logement.nombrePlaceLibre }}</p>
+  
+      <p><strong>Propriétaire :</strong> {{ logement.proprietaire.firstname }} {{ logement.proprietaire.lastname }}</p>
+  
+      <!-- Affichage des images -->
+      <div *ngIf="logement.photoUrls && logement.photoUrls.length > 0" class="photo-container">
+        <div *ngFor="let photo of logement.photoUrls">
+          <!-- Concaténer l'URL de base avec le chemin de l'image -->
+          <img [src]="'http://localhost:8082/api' + photo" alt="Photo du logement">
+        </div>
+      </div>
+  
+      <div class="details">
+        <span class="availability">{{ logement.disponible ? 'Disponible' : 'Indisponible' }}</span>
+        <span class="price">{{ logement.prix }} DT</span>
+      </div>
+    </div>
+  </div>
+  

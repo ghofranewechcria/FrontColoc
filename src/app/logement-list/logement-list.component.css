@@ -1,0 +1,111 @@
+body {
+    background-color: #fff; /* Fond blanc pour le site */
+    font-family: Arial, sans-serif;
+  }
+  
+  .logement-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .logement {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 60%; 
+    height : 40%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 2rem; /* Ajout de marge en bas pour espacer les logements */
+  }
+  
+  .logement:hover {
+    transform: scale(1.05);
+  }
+  
+  .logement h3 {
+    font-size: 1.2rem;
+    color: #2506a2;
+    margin-bottom: 1rem;
+  }
+  
+  .logement p {
+    color: #0b0000;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+  
+  .logement img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logement .photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .logement .photo-container img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .logement .details {
+    margin-top: 1rem;
+  }
+  
+  .logement .details p {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .logement .availability {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #004e92;
+  }
+  
+  .logement .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000428;
+    margin-top: 0.5rem;
+  }
+  
+  .logement .availability,
+  .logement .price {
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  .logement-list-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.logement-container {
+  width: 60%;  /* Ajuster la largeur de la liste des logements */
+}
+
+.form-container {
+  width: 35%;  /* Ajuster la largeur du formulaire */
+  background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); /* Optionnel, si vous voulez garder le fond */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

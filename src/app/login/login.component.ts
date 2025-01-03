@@ -32,7 +32,7 @@ export class LoginComponent {
         }
 
         // Redirection vers la page d'accueil
-        this.router.navigate(['/logement']);
+        this.router.navigate(['/logements']);
       },
       error: (error) => {
         console.error('Login error:', error);

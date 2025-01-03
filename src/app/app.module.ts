@@ -10,7 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LogementComponent } from './logement/logement.component'; // Pour les appels HTTP
+import { LogementComponent } from './logement/logement.component';
+import { LogementListComponent } from './logement-list/logement-list.component'; // Pour les appels HTTP
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LogementComponent } from './logement/logement.component'; // Pour les a
     NavbarComponent,
     HomeComponent,
     ProfileComponent,
-    LogementComponent
+    LogementComponent,
+    LogementListComponent
   ],
   imports: [
     BrowserModule,
