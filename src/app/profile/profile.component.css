@@ -1,99 +1,107 @@
-/* profile.component.scss */
-
 /* Container général */
 .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 60px); /* Réduire la hauteur de la navbar si elle a une hauteur de 60px */
-    padding-top: 20px; /* Ajustez cette valeur selon la hauteur réelle de la navbar */
-    background: linear-gradient(to bottom right, #004e92, #000428); /* Dégradé inspiré du login */
-  }
-  
-  /* Boîte de contenu pour le profil */
-  .profile-box {
-    background: #fff;
-    padding: 3rem; /* Augmenter le padding pour plus d'espace */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 400px; /* Augmenter la largeur */
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Titre du profil */
-  .profile-box h2 {
-    font-size: 2rem;
-    color: #004e92; /* Couleur similaire à celle du login */
-    margin-bottom: 2.5rem;
-    
-  }
-  
-  /* Items du profil */
-  .profile-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px; /* Plus d'espace entre les éléments */
-    font-size: 1.2rem;
-  }
-  
-  .profile-item strong {
-    color: #004e92;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .profile-item span {
-    color: #555;
-  }
-  
-  /* Message de chargement */
-  .loading-text {
-    color: #888;
-    font-size: 1rem;
-    font-style: italic;
-  }
-  
-  /* Message d'erreur */
-  .error-message {
-    padding: 15px;
-    background-color: #f8d7da;
-    color: #721c24;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    margin-top: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px); /* Ajustement pour inclure la navbar */
+  padding-top: 20px; /* Ajustez cette valeur selon la hauteur réelle de la navbar */
+  background: linear-gradient(to bottom right, #004e92, #000428); /* Dégradé inspiré du login */
+  box-sizing: border-box; /* Éviter les débordements */
+}
 
-  .complete-profile-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: linear-gradient(to right, #004e92, #000428);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  
-    &:hover {
-      background: linear-gradient(to right, #003972, #000316);
-    }
-  }
-  
-  
-  /* Responsive Design pour les petits écrans */
-  @media (max-width: 768px) {
-    .profile-box {
+/* Boîte de contenu pour le profil */
+.profile-box {
+  background: #fff;
+  padding: 3rem; /* Augmenter le padding pour plus d'espace */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 400px; /* Augmenter la largeur */
+  text-align: center;
+  color: #333;
+  margin: auto; /* Centrage horizontal et vertical avec flexbox */
+  box-sizing: border-box; /* Éviter les débordements */
+}
+
+/* Titre du profil */
+.profile-box h2 {
+  font-size: 2rem;
+  color: #004e92; /* Couleur similaire à celle du login */
+  margin-bottom: 2.5rem;
+}
+
+.user-image {
+  width: 150px; /* Taille de l'image */
+  height: 150px; /* Taille de l'image */
+  border-radius: 50%; /* Rend l'image ronde */
+  object-fit: cover; /* Maintient le ratio de l'image tout en remplissant le conteneur */
+  border: 3px solid #ddd; /* Bordure autour de l'image */
+  margin: 10px auto; /* Centrage et espacement */
+}
+
+/* Items du profil */
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px; /* Plus d'espace entre les éléments */
+  font-size: 1.2rem;
+}
+
+.profile-item strong {
+  color: #004e92;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.profile-item span {
+  color: #555;
+}
+
+/* Message de chargement */
+.loading-text {
+  color: #888;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Message d'erreur */
+.error-message {
+  padding: 15px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.complete-profile-button, .save-changes-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #004e92, #000428);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
+}
+
+.complete-profile-button:hover, .save-changes-button:hover {
+  background: linear-gradient(to right, #003972, #000316);
+}
+
+/* Responsive Design pour les petits écrans */
+@media (max-width: 768px) {
+  .profile-box {
       width: 90%;
       padding: 2rem;
-    }
-  
-    .profile-box h2 {
-      font-size: 1.6rem;
-    }
-  
-    .profile-item {
-      font-size: 1rem;
-    }
   }
-  
+
+  .profile-box h2 {
+      font-size: 1.6rem;
+  }
+
+  .profile-item {
+      font-size: 1rem;
+  }
+}

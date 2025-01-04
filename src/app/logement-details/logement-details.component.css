@@ -1,0 +1,110 @@
+/* Container principal */
+.logement-details-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  /* Titre de la page */
+  .logement-details-page h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Section des détails du logement */
+  .logement-details-page .details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px; /* Espacement entre les détails et les photos */
+  }
+  
+  /* Formatage des paragraphes avec les informations du logement */
+  .logement-details-page .details p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  /* Mettre en gras les titres des informations */
+  .logement-details-page .details strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Section des photos */
+  .logement-details-page .photo-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 images par ligne */
+    gap: 20px; /* Espace entre les images */
+    margin-top: 30px;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Chaque image aura une taille égale */
+  .logement-details-page .photo-container img {
+    width: 100%; /* S'adapte à la largeur de son conteneur */
+    height: 200px; /* Hauteur fixe */
+    object-fit: cover; /* Pour garder un bon ratio d'image */
+    border-radius: 8px;
+  }
+
+  .reserve-btn {
+    width: 100%;
+        padding: 0.75rem;
+        background: linear-gradient(to right, #004e92, #000428);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+  
+        &:hover {
+          background: linear-gradient(to right, #003972, #000316);
+        }
+  }
+  
+  
+  /* Responsive : si l'écran est plus petit, on passe à 1 image par ligne */
+  @media (max-width: 768px) {
+    .logement-details-page .photo-container {
+      grid-template-columns: 1fr; /* 1 image par ligne */
+    }
+  }
+  
+  /* Loader */
+  ng-template#loading {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+  
+  /* Bouton de retour */
+  .logement-details-page .back-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .logement-details-page .back-btn:hover {
+    background-color: #0056b3;
+  }
+  

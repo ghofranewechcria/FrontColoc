@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -8,16 +7,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-onSubmit() {
-throw new Error('Method not implemented.');
-}
   userProfile: any = null;
   errorMessage: string = '';
-  updateprofile: boolean = false;
+  updateProfile: boolean = false;
+  selectedPhoto: File | null = null;
 
-  private apiUrl = 'http://localhost:8082/api/users'; // Remplacez par l'URL de votre backend
-
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -27,19 +22,40 @@ throw new Error('Method not implemented.');
     this.authService.getUserProfile().subscribe({
       next: (response) => {
         this.userProfile = response;
+        console.log('Profil utilisateur récupéré:', response);
       },
       error: (error) => {
-        this.errorMessage = 'Impossible de récupérer les informations du profil.';
+        this.errorMessage = 'Impossible de récupérer le profil utilisateur.';
         console.error(error);
       },
     });
   }
 
-  onCompleteProfile(): void {
-    this.authService.completeUserProfile(this.userProfile).subscribe({
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files && input.files.length > 0) {
+      this.selectedPhoto = input.files[0]; // Enregistre le fichier photo sélectionné
+    }
+  }
+
+  onSubmit(): void {
+    if (!this.userProfile) return;
+
+    // Prépare les données du profil sans la photo
+    const userProfileData = {
+      numTel: this.userProfile.num_tel,
+      budget: this.userProfile.budget,
+      typelogementprefere: this.userProfile.typelogementprefere,
+      localisationprefere: this.userProfile.localisationprefere,
+    };
+
+    console.log(userProfileData);
+    // Appel du service en passant à la fois les données du profil et la photo si elle est sélectionnée
+    this.authService.completeUserProfile(userProfileData, this.selectedPhoto).subscribe({
       next: (response) => {
         alert('Profil mis à jour avec succès !');
-        this.userProfile = response; // Met à jour le profil utilisateur localement
+        this.updateProfile = false;
+        this.getUserProfile(); // Recharger le profil après la mise à jour
       },
       error: (error) => {
         console.error('Erreur lors de la mise à jour du profil :', error);
@@ -47,5 +63,23 @@ throw new Error('Method not implemented.');
       },
     });
   }
-  
+
+  getUserImageSrc(base64Image: string): string {
+    if (!base64Image) {
+      return ''; // Retourne une valeur vide si l'image est null ou indéfinie
+    }
+
+    // Détection du type MIME en fonction du contenu ou de la logique associée
+    if (base64Image.startsWith('/9j/')) {
+      return 'data:image/jpeg;base64,' + base64Image;
+    } else if (base64Image.startsWith('iVBORw0KGgo=')) {
+      return 'data:image/png;base64,' + base64Image;
+    } else if (base64Image.startsWith('R0lGODlh')) {
+      return 'data:image/gif;base64,' + base64Image;
+    } else {
+      // Par défaut, considérer comme un JPEG si aucune détection spécifique
+      return 'data:image/jpeg;base64,' + base64Image;
+    }
+  }
+
 }

@@ -1,0 +1,37 @@
+<div class="logement-details-page">
+    <div *ngIf="logement; else loading">
+      <h2>Détails du Logement</h2>
+  
+      <!-- Informations du logement -->
+      <div class="details">
+        <p><strong>Description:</strong> {{ logement.description }}</p>
+        <p><strong>Adresse:</strong> {{ logement.adresse }}</p>
+        <p><strong>Prix:</strong> {{ logement.prix }} DT</p>
+        <p><strong>Équipement disponible:</strong> {{ logement.equipDispo }}</p>
+        <p><strong>Nombre de places libres:</strong> {{ logement.nombrePlaceLibre }}</p>
+        <p><strong>Date de disponibilité:</strong> {{ logement.dateDisponibilite | date: 'dd/MM/yyyy' }}</p>
+        <p><strong>Propriétaire:</strong> {{ logement.proprietaire.firstname }} {{ logement.proprietaire.lastname }}</p>
+      </div>
+  
+      <!-- Photos du logement -->
+      <div *ngIf="logement.photoUrls && logement.photoUrls.length > 0" class="photo-container">
+        <div *ngFor="let photo of logement.photoUrls">
+          <img [src]="'http://localhost:8082/api' + photo" alt="Photo du logement" />
+        </div>
+      </div>
+  
+      <!-- Bouton Réserver -->
+      <button
+        class="reserve-btn"
+        [disabled]="logement.nombrePlaceLibre === 0"
+        (click)="reserver()"
+      >
+        Réserver
+      </button>
+    </div>
+  
+    <ng-template #loading>
+      <p>Chargement des détails du logement...</p>
+    </ng-template>
+  </div>
+  

@@ -18,7 +18,6 @@ export class LogementComponent {
     private http: HttpClient,
     public router: Router // Assurez-vous que router est public pour y accéder dans le template
   ) {
-    // Initialisation du formulaire
     this.logementForm = this.fb.group({
       adresse: ['', Validators.required], // Le champ adresse est requis
       prix: ['', [Validators.required, Validators.min(0)]], // Le prix est requis et doit être >= 0
@@ -85,7 +84,7 @@ export class LogementComponent {
       .subscribe({
         next: (response) => {
           alert('Logement créé avec succès !');
-          this.router.navigate(['/logements']); // Naviguer vers la liste des logements après création
+         this.router.navigate(['/logements']); // Naviguer vers la liste des logements après création
         },
         error: (err) => {
           // Gestion des erreurs HTTP

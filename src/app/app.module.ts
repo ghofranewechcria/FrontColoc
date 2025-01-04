@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogementComponent } from './logement/logement.component';
-import { LogementListComponent } from './logement-list/logement-list.component'; // Pour les appels HTTP
+import { LogementListComponent } from './logement-list/logement-list.component';
+import { LogementDetailsComponent } from './logement-details/logement-details.component'; // Pour les appels HTTP
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LogementListComponent } from './logement-list/logement-list.component';
     HomeComponent,
     ProfileComponent,
     LogementComponent,
-    LogementListComponent
+    LogementListComponent,
+    LogementDetailsComponent
   ],
   imports: [
     BrowserModule,

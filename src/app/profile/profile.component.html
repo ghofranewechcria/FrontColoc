@@ -1,112 +1,50 @@
-<head>
-  
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://66b4197244202234ngrokfreeapp.matomo.cloud/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='https://cdn.matomo.cloud/66b4197244202234ngrokfreeapp.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+<app-navbar></app-navbar>
 
-
-</head>
-
-<app-navbar
-></app-navbar>
-
-<div class="profile-container" *ngIf="updateprofile==false">
-    <div class="profile-box">
-      <h2>User Profile</h2>
-      <div *ngIf="userProfile; else loading">
-        <div *ngIf="userProfile.firstName || userProfile.lastName" class="profile-item">
-          <strong>Name:</strong>
-          <span>{{ userProfile.firstName }} {{ userProfile.lastName }}</span>
-        </div>
-        <div *ngIf="userProfile.email" class="profile-item">
-          <strong>Email:</strong>
-          <span>{{ userProfile.email }}</span>
-        </div>
-        <div *ngIf="userProfile.numTel" class="profile-item">
-          <strong>Phone:</strong>
-          <span>{{ userProfile.numTel }}</span>
-        </div>
-        <div *ngIf="userProfile.budget" class="profile-item">
-          <strong>Budget:</strong>
-          <span>{{ userProfile.budget | currency }}</span>
-        </div>
-        <div *ngIf="userProfile.typelogementprefere" class="profile-item">
-          <strong>Preferred Housing Type:</strong>
-          <span>{{ userProfile.typelogementprefere }}</span>
-        </div>
-        <div *ngIf="userProfile.localisationprefere" class="profile-item">
-          <strong>Preferred Location:</strong>
-          <span>{{ userProfile.localisationprefere }}</span>
-        </div>
-      </div>
-  
-      <ng-template #loading>
-        <p>Loading user profile...</p>
-      </ng-template>
-  
-      <div *ngIf="errorMessage" class="error-message">
-        <p>{{ errorMessage }}</p>
-      </div>
-      <button (click)="updateprofile=true" class="complete-profile-button">Complete profile</button>
-    </div>
-  </div>
-  
-
-
-
-<div class="profile-container" *ngIf="updateprofile==true">
+<div class="profile-container" *ngIf="!updateProfile">
   <div class="profile-box">
     <h2>User Profile</h2>
-    <form *ngIf="userProfile; else loading" (ngSubmit)="onSubmit()">
-      <div class="profile-item">
-        <label for="firstName"><strong>First Name:</strong></label>
-        <input type="text" id="firstName" [(ngModel)]="userProfile.firstName" name="firstName" required>
+    <div *ngIf="userProfile; else loading">
+
+      <div>
+        <img
+          *ngIf="userProfile && userProfile.photo"
+          [src]="getUserImageSrc(userProfile.photo)"
+          alt="User Image"
+          class="user-image"
+        />
+        <span *ngIf="!userProfile.photo">No Image Available</span>
       </div>
-      
-      <div class="profile-item">
-        <label for="lastName"><strong>Last Name:</strong></label>
-        <input type="text" id="lastName" [(ngModel)]="userProfile.lastName" name="lastName" required>
+
+
+      <div *ngIf="userProfile.firstname" class="profile-item">
+        <strong>First Name:</strong>
+        <span>{{ userProfile.firstname }} </span>
       </div>
-      
-      <div class="profile-item">
-        <label for="email"><strong>Email:</strong></label>
-        <input type="email" id="email" [(ngModel)]="userProfile.email" name="email" required>
+      <div *ngIf="userProfile.lastname" class="profile-item">
+        <strong>last Name:</strong>
+        <span>{{ userProfile.lastname }}</span>
       </div>
-      
-      <div class="profile-item">
-        <label for="numTel"><strong>Phone:</strong></label>
-        <input type="tel" id="numTel" [(ngModel)]="userProfile.numTel" name="numTel" required>
+      <div *ngIf="userProfile.email" class="profile-item">
+        <strong>Email:</strong>
+        <span>{{ userProfile.email }}</span>
       </div>
-      
-      <div class="profile-item">
-        <label for="budget"><strong>Budget:</strong></label>
-        <input type="number" id="budget" [(ngModel)]="userProfile.budget" name="budget" required>
+      <div *ngIf="userProfile.num_tel" class="profile-item">
+        <strong>Phone:</strong>
+        <span>{{ userProfile.num_tel }}</span>
       </div>
-      
-      <div class="profile-item">
-        <label for="typelogementprefere"><strong>Preferred Housing Type:</strong></label>
-        <input type="text" id="typelogementprefere" [(ngModel)]="userProfile.typelogementprefere" name="typelogementprefere" required>
+      <div *ngIf="userProfile.budget" class="profile-item">
+        <strong>Budget:</strong>
+        <span>{{ userProfile.budget | currency }}</span>
       </div>
-      
-      <div class="profile-item">
-        <label for="localisationprefere"><strong>Preferred Location:</strong></label>
-        <input type="text" id="localisationprefere" [(ngModel)]="userProfile.localisationprefere" name="localisationprefere" required>
+      <div *ngIf="userProfile.typelogementprefere" class="profile-item">
+        <strong>Preferred Housing Type:</strong>
+        <span>{{ userProfile.typelogementprefere }}</span>
       </div>
-      
-      <button type="submit">Save Changes</button>
-    </form>
+      <div *ngIf="userProfile.localisationprefere" class="profile-item">
+        <strong>Preferred Location:</strong>
+        <span>{{ userProfile.localisationprefere }}</span>
+      </div>
+    </div>
 
     <ng-template #loading>
       <p>Loading user profile...</p>
@@ -115,5 +53,55 @@
     <div *ngIf="errorMessage" class="error-message">
       <p>{{ errorMessage }}</p>
     </div>
+    <button (click)="updateProfile = true" class="complete-profile-button">Complete profile</button>
+  </div>
+</div>
+
+<div class="profile-container" *ngIf="updateProfile">
+  <div class="profile-box">
+    <h2>Complete Your Profile</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="profile-item">
+        <label for="firstName"><strong>First Name:</strong></label>
+        <input type="text" id="firstName" [(ngModel)]="userProfile.firstname" name="firstName">
+      </div>
+
+      <div class="profile-item">
+        <label for="lastName"><strong>Last Name:</strong></label>
+        <input type="text" id="lastName" [(ngModel)]="userProfile.lastname" name="lastName">
+      </div>
+
+      <div class="profile-item">
+        <label for="email"><strong>Email:</strong></label>
+        <input type="email" id="email" [(ngModel)]="userProfile.email" name="email">
+      </div>
+
+      <div class="profile-item">
+        <label for="numTel"><strong>Phone:</strong></label>
+        <input type="tel" id="numTel" [(ngModel)]="userProfile.num_tel" name="numTel">
+      </div>
+
+      <div class="profile-item">
+        <label for="budget"><strong>Budget:</strong></label>
+        <input type="number" id="budget" [(ngModel)]="userProfile.budget" name="budget">
+      </div>
+
+      <div class="profile-item">
+        <label for="typelogementprefere"><strong>Preferred Housing Type:</strong></label>
+        <input type="text" id="typelogementprefere" [(ngModel)]="userProfile.typelogementprefere" name="typelogementprefere">
+      </div>
+
+      <div class="profile-item">
+        <label for="localisationprefere"><strong>Preferred Location:</strong></label>
+        <input type="text" id="localisationprefere" [(ngModel)]="userProfile.localisationprefere" name="localisationprefere">
+      </div>
+
+      <div class="profile-item">
+        <label for="photo"><strong>Profile Photo:</strong></label>
+        <input type="file" id="photo" (change)="onFileSelected($event)">
+      </div>
+
+      <button type="submit">Save Changes</button>
+    </form>
   </div>
 </div>

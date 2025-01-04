@@ -25,10 +25,9 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-
         // Stocker le token si nécessaire
         if (response.token) {
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('jwt_token', response.token);
         }
 
         // Redirection vers la page d'accueil
@@ -66,4 +65,3 @@ export class LoginComponent {
       });
   }
 }
-

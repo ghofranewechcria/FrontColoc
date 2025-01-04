@@ -1,76 +1,68 @@
-<head>
-  
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://66b4197244202234ngrokfreeapp.matomo.cloud/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='https://cdn.matomo.cloud/66b4197244202234ngrokfreeapp.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ETQTT35BLE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ETQTT35BLE');
-</script>
-<!-- End Matomo Code -->
-
-
-</head>
-
 <div class="form-container">
-    <form [formGroup]="logementForm" (ngSubmit)="submitForm()">
-      <h2>Créer un Nouveau Logement</h2>
-    
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input id="adresse" formControlName="adresse" type="text" placeholder="Adresse du logement" />
-      </div>
-    
-      <div class="form-group">
-        <label for="prix">Prix</label>
-        <input id="prix" formControlName="prix" type="number" placeholder="Prix par mois" />
-      </div>
-    
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea id="description" formControlName="description" placeholder="Description du logement"></textarea>
-      </div>
-    
-      <div class="form-group">
-        <label for="equipDispo">Équipements Disponibles</label>
-        <input id="equipDispo" formControlName="equipDispo" type="text" placeholder="Ex: Cuisine équipée, Wifi" />
-      </div>
-    
-      <div class="form-group">
-        <label for="dateDisponibilite">Date de Disponibilité</label>
-        <input id="dateDisponibilite" formControlName="dateDisponibilite" type="date" />
-      </div>
-    
-      <div class="form-group">
-        <label for="nombrePlaceLibre">Nombre de Places Libres</label>
-        <input id="nombrePlaceLibre" formControlName="nombrePlaceLibre" type="number" />
-      </div>
-    
-      <div class="form-group">
-        <label for="photos">Photos</label>
-        <input id="photos" type="file" (change)="onFileChange($event)" multiple />
-      </div>
-    
-      <div class="form-actions">
-        <button type="submit" class="submit">Créer</button>
-        <button type="button" class="cancel" (click)="router.navigate(['/logements'])">Annuler</button>
-      </div>
-    </form>
-    
+  <form [formGroup]="logementForm" (ngSubmit)="submitForm()">
+    <h2>Créer un Nouveau Logement</h2>
+
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <input
+        id="adresse"
+        formControlName="adresse"
+        type="text"
+        placeholder="Adresse du logement"
+      />
     </div>
+
+    <div class="form-group">
+      <label for="prix">Prix</label>
+      <input
+        id="prix"
+        formControlName="prix"
+        type="number"
+        placeholder="Prix par mois"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Description du logement"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="equipDispo">Équipements Disponibles</label>
+      <input
+        id="equipDispo"
+        formControlName="equipDispo"
+        type="text"
+        placeholder="Ex: Cuisine équipée, Wifi"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="dateDisponibilite">Date de Disponibilité</label>
+      <input id="dateDisponibilite" formControlName="dateDisponibilite" type="date" />
+    </div>
+
+    <div class="form-group">
+      <label for="nombrePlaceLibre">Nombre de Places Libres</label>
+      <input
+        id="nombrePlaceLibre"
+        formControlName="nombrePlaceLibre"
+        type="number"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="photos">Photos</label>
+      <input id="photos" type="file" (change)="onFileChange($event)" multiple />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="submit">Créer</button>
+      <button type="button" class="cancel" (click)="router.navigate(['/logements'])">Annuler</button>
+    </div>
+  </form>
+</div>

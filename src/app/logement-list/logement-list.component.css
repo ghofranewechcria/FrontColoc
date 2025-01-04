@@ -1,111 +1,139 @@
-body {
-    background-color: #fff; /* Fond blanc pour le site */
-    font-family: Arial, sans-serif;
-  }
-  
-  .logement-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  
-  .logement {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 60%; 
-    height : 40%;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 2rem; /* Ajout de marge en bas pour espacer les logements */
-  }
-  
-  .logement:hover {
-    transform: scale(1.05);
-  }
-  
-  .logement h3 {
-    font-size: 1.2rem;
-    color: #2506a2;
-    margin-bottom: 1rem;
-  }
-  
-  .logement p {
-    color: #0b0000;
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-  }
-  
-  .logement img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .logement .photo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .logement .photo-container img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .logement .details {
-    margin-top: 1rem;
-  }
-  
-  .logement .details p {
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .logement .availability {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #004e92;
-  }
-  
-  .logement .price {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #000428;
-    margin-top: 0.5rem;
-  }
-  
-  .logement .availability,
-  .logement .price {
-    display: block;
-    margin-top: 1rem;
-  }
-  
-  .logement-list-container {
+/* Conteneur principal */
+.logement-page {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
+  height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* Partie gauche : Liste des logements */
+.logement-list {
+  flex: 2;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logement-container {
-  width: 60%;  /* Ajuster la largeur de la liste des logements */
+  margin-bottom: 1.5rem;
 }
 
-.form-container {
-  width: 35%;  /* Ajuster la largeur du formulaire */
-  background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); /* Optionnel, si vous voulez garder le fond */
-  padding: 2rem;
+.logement {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logement:hover {
+  transform: scale(1.02);
+}
+
+.logement .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logement .header h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000368;
+}
+
+.logement .availability {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000368;
+  background-color: #ccd3fe39;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+}
+
+.logement .price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000368;
+  background-color: #ccd3fe39;
+  padding: 0.7rem 0.6rem;
+  border-radius: 5px;
+}
+
+.logement .content {
+  display: flex;
+  gap: 2rem;
+}
+
+.logement .photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logement .photo-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.details-button .btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(to right, #004e92, #000428);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &:hover {
+    background: linear-gradient(to right, #003972, #000316);
+  }
+}
+
+.logement .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.logement .details p {
+  margin: 0;
+}
+
+.logement-form {
+  flex: 1;
+  max-width: 500px;
+  overflow: auto;
+  padding: 0; /* Supprime les espaces internes */
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logement-page {
+    flex-direction: column;
+  }
+
+  .logement-list,
+  .logement-form {
+    flex: none;
+    max-width: 100%;
+  }
 }
