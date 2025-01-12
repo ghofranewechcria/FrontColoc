@@ -1,5 +1,6 @@
-<div class="table-container">
-    <table>
+<div class="container">
+    <h2>Mes Logements</h2>
+    <table class="table">
       <thead>
         <tr>
           <th>ID</th>
@@ -11,40 +12,63 @@
       </thead>
       <tbody>
         <tr *ngFor="let logement of filteredLogements">
-            <td>{{ logement.id }}</td>
-            <td>
-              <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.adresse }}</div>
-              <input
-                *ngIf="logementToEdit?.id === logement.id"
-                [(ngModel)]="logementToEdit.adresse"
-                placeholder="Adresse"
-              />
-            </td>
-            <td>
-              <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.prix }}</div>
-              <input
-                *ngIf="logementToEdit?.id === logement.id"
-                [(ngModel)]="logementToEdit.prix"
-                placeholder="Prix"
-                type="number"
-              />
-            </td>
-            <td>
-              <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.description }}</div>
-              <input
-                *ngIf="logementToEdit?.id === logement.id"
-                [(ngModel)]="logementToEdit.description"
-                placeholder="Description"
-              />
-            </td>
-            <td>
-              <button *ngIf="logementToEdit?.id !== logement.id" (click)="editLogement(logement)">Modifier</button>
-              <button *ngIf="logementToEdit?.id === logement.id" (click)="updateLogement()">Enregistrer</button>
-              <button *ngIf="logementToEdit?.id === logement.id" (click)="logementToEdit = null">Annuler</button>
-              <button (click)="deleteLogement(logement.id)">Supprimer</button>
-            </td>
-          </tr>
-          
+          <td>{{ logement.id }}</td>
+          <td>
+            <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.adresse }}</div>
+            <input
+              *ngIf="logementToEdit?.id === logement.id"
+              [(ngModel)]="logementToEdit.adresse"
+              placeholder="Adresse"
+            />
+          </td>
+          <td>
+            <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.prix }}</div>
+            <input
+              *ngIf="logementToEdit?.id === logement.id"
+              [(ngModel)]="logementToEdit.prix"
+              placeholder="Prix"
+              type="number"
+            />
+          </td>
+          <td>
+            <div *ngIf="logementToEdit?.id !== logement.id">{{ logement.description }}</div>
+            <input
+              *ngIf="logementToEdit?.id === logement.id"
+              [(ngModel)]="logementToEdit.description"
+              placeholder="Description"
+            />
+          </td>
+          <td>
+            <!-- Boutons d'action -->
+            <button
+              class="btn btn-success btn-sm"
+              *ngIf="logementToEdit?.id !== logement.id"
+              (click)="editLogement(logement)"
+            >
+              Modifier
+            </button>
+            <button
+              class="btn btn-primary btn-sm"
+              *ngIf="logementToEdit?.id === logement.id"
+              (click)="updateLogement()"
+            >
+              Enregistrer
+            </button>
+            <button
+              class="btn btn-secondary btn-sm"
+              *ngIf="logementToEdit?.id === logement.id"
+              (click)="logementToEdit = null"
+            >
+              Annuler
+            </button>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteLogement(logement.id)"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
