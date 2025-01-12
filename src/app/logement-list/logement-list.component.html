@@ -17,32 +17,43 @@
         />
       </div>
 
+      <!-- Slider pour le prix -->
       <div class="filter-item">
         <label for="price-range">Prix : </label>
-        <p-slider
-          [(ngModel)]="filterPrixRange"
-          [min]="0"
-          [max]="5000"
-          [range]="true"
-          styleClass="price-slider"
-          [step]="50"
-          (ngModelChange)="applyFilters()"
-        ></p-slider>
+        <div class="slider-container">
+          <input
+            type="range"
+            id="min-price"
+            [(ngModel)]="filterPrixRange[0]"
+            [min]="0"
+            [max]="5000"
+            step="50"
+            (input)="applyFilters()"
+          />
+          <input
+            type="range"
+            id="max-price"
+            [(ngModel)]="filterPrixRange[1]"
+            [min]="0"
+            [max]="5000"
+            step="50"
+            (input)="applyFilters()"
+          />
+        </div>
         <div class="price-values">
           <span>{{ filterPrixRange[0] }} DT</span>
           <span>{{ filterPrixRange[1] }} DT</span>
         </div>
       </div>
 
+      <!-- Champ auto-complétion -->
       <div class="filter-item">
-        <p-autoComplete
+        <input
+          type="text"
           [(ngModel)]="filterEquipDispo"
-          [suggestions]="equipSuggestions"
-          (completeMethod)="filterEquipements($event)"
           placeholder="Équipement"
-          field="equipDispo"
           class="filter-input"
-        ></p-autoComplete>
+        />
       </div>
 
       <button (click)="applyFilters()" class="btn btn-secondary">
@@ -100,6 +111,7 @@
       </div>
     </div>
   </div>
+
   <app-map [logements]="logementsWithCoordinates"></app-map>
 
   <!-- Partie droite : Formulaire de création -->
@@ -107,5 +119,3 @@
     <app-logement></app-logement>
   </div>
 </div>
-
-

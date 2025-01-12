@@ -15,7 +15,7 @@ export class LogementListComponent implements OnInit {
   errorMessage: string = '';
 
   // Filtres
-  filterPrixRange: [number, number] = [0, 5000]; // Slider pour le prix
+  filterPrixRange: number[] = [0, 5000]; // Valeurs par défaut pour le filtre de prix
   filterAdresse: string = '';
   filterEquipDispo: string = '';
   equipDispos: string[] = [];
@@ -42,12 +42,12 @@ export class LogementListComponent implements OnInit {
                 logement.longitude = parseFloat(result[0].lon);
               }
             },
-            error: (err) => {
-              console.error(
-                `Erreur de géocodage pour l'adresse ${logement.adresse}`,
-                err
-              );
-            },
+            // error: (err) => {
+            //   console.error(
+            //     `Erreur de géocodage pour l'adresse ${logement.adresse}`,
+            //     err
+            //   );
+            // },
           });
         });
       },
@@ -73,20 +73,19 @@ export class LogementListComponent implements OnInit {
     );
   }
 
-  // Appliquer les filtres
+
   applyFilters(): void {
     this.filteredLogements = this.logements.filter((logement) => {
-      const matchesPrix =
+      return (
         logement.prix >= this.filterPrixRange[0] &&
-        logement.prix <= this.filterPrixRange[1];
-      const matchesAdresse =
-        this.filterAdresse === '' ||
-        logement.adresse.toLowerCase().includes(this.filterAdresse.toLowerCase());
-      const matchesEquip =
-        this.filterEquipDispo === '' ||
-        logement.equipDispo.toLowerCase().includes(this.filterEquipDispo.toLowerCase());
-  
-      return matchesPrix && matchesAdresse && matchesEquip;
+        logement.prix <= this.filterPrixRange[1] &&
+        logement.adresse
+          .toLowerCase()
+          .includes(this.filterAdresse.toLowerCase()) &&
+        logement.equipDispo
+          .toLowerCase()
+          .includes(this.filterEquipDispo?.toLowerCase() || '')
+      );
     });
   }
-} 
+}

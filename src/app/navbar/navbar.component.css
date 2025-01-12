@@ -11,6 +11,17 @@
       color: white;
       text-decoration: none;
     }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    
   
     .user-menu {
       position: relative;
@@ -21,6 +32,20 @@
         border-radius: 50%;
         cursor: pointer;
       }
+
+      .menu-item {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease-in-out;
+      }
+      
+      .menu-item:hover {
+        background-color: #0056b3;
+      }
+      
   
       .dropdown-menu {
         position: absolute;

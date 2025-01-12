@@ -27,11 +27,9 @@ export class AuthService {
   }
 
   getUserProfile(): Observable<any> {
-    // Récupérer le token d'authentification du stockage local ou du cookie
     const token = localStorage.getItem('jwt_token');
     console.log('this is the user token' , token)
 
-    // Ajouter le token dans les en-têtes de la requête
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get(`${this.apiUrl}/api/users/profile`, { headers });
@@ -46,14 +44,12 @@ export class AuthService {
 
     const formData = new FormData();
 
-    // Ajouter les champs non-fichiers à FormData
     Object.keys(userProfile).forEach((key) => {
       if (userProfile[key] !== null && userProfile[key] !== undefined) {
         formData.append(key, userProfile[key]);
       }
     });
 
-    // Ajouter le fichier photo à FormData s'il existe
     if (photoFile) {
       formData.append('photo', photoFile, photoFile.name);
     }

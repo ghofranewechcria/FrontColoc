@@ -25,12 +25,15 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        // Stocker le token si nécessaire
+        console.log('Login response:', response);
         if (response.token) {
           localStorage.setItem('jwt_token', response.token);
         }
 
-        // Redirection vers la page d'accueil
+        if (response.userRole) {
+          localStorage.setItem('user', JSON.stringify({ role: response.userRole }));
+      }
+
         this.router.navigate(['/logements']);
       },
       error: (error) => {
@@ -41,7 +44,8 @@ export class LoginComponent {
     });
   }
 
-  // Méthode d'inscription
+
+
   onSignup() {
     this.authService
       .signup(
@@ -54,8 +58,12 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           console.log('Signup successful:', response);
+
+          if (response.user) {
+            localStorage.setItem('user', JSON.stringify(response.user));
+          }
           alert('Signup successful! You can now log in.');
-          this.toggleMode(true); // Basculer vers l'écran de login
+          this.toggleMode(true); 
         },
         error: (error) => {
           console.error('Signup error:', error);
