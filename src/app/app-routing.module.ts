@@ -10,6 +10,11 @@ import { LogementListComponent } from './logement-list/logement-list.component';
 import { LogementDetailsComponent } from './logement-details/logement-details.component';
 import { ColocationHistoriqueComponent} from './historique-colocations/historique-colocations.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { AdminAnnonceComponent } from './admin-annonce/admin-annonce.component';
+
+
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -21,6 +26,7 @@ const routes: Routes = [
   { path: 'logement/details/:id', component: LogementDetailsComponent },
   { path: 'historique-colocations', component: ColocationHistoriqueComponent },
   {path: 'colocataires' , component: UserListComponent},
+  {path: 'admin-annonces' , component: AdminAnnonceComponent},
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

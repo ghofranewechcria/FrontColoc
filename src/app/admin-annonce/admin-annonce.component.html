@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Gestion des Annonces</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Adresse</th>
+          <th>Prix</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let logement of logements">
+          <td>{{ logement.id }}</td>
+          <td>{{ logement.adresse }}</td>
+          <td>{{ logement.prix }} DT</td>
+          <td>{{ logement.description }}</td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="deleteLogement(logement.id)"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
