@@ -4,7 +4,6 @@
   <div class="profile-box">
     <h2>User Profile</h2>
     <div *ngIf="userProfile; else loading">
-
       <div>
         <img
           *ngIf="userProfile && userProfile.photo"
@@ -14,7 +13,6 @@
         />
         <span *ngIf="!userProfile.photo">No Image Available</span>
       </div>
-
 
       <div *ngIf="userProfile.firstname" class="profile-item">
         <strong>First Name:</strong>
@@ -53,55 +51,169 @@
     <div *ngIf="errorMessage" class="error-message">
       <p>{{ errorMessage }}</p>
     </div>
-    <button (click)="updateProfile = true" class="complete-profile-button">Complete profile</button>
+    <button (click)="updateProfile = true" class="complete-profile-button">
+      Complete profile
+    </button>
   </div>
 </div>
 
 <div class="profile-container" *ngIf="updateProfile">
   <div class="profile-box">
     <h2>Complete Your Profile</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form #profileForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="profile-item">
         <label for="firstName"><strong>First Name:</strong></label>
-        <input type="text" id="firstName" [(ngModel)]="userProfile.firstname" name="firstName">
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="userProfile.firstname"
+          name="firstName"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted && !profileForm.controls['firstName']?.valid
+          "
+          class="error"
+        >
+          First Name is required.
+        </div>
       </div>
 
       <div class="profile-item">
         <label for="lastName"><strong>Last Name:</strong></label>
-        <input type="text" id="lastName" [(ngModel)]="userProfile.lastname" name="lastName">
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="userProfile.lastname"
+          name="lastName"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted && !profileForm.controls['lastName']?.valid
+          "
+          class="error"
+        >
+          Last Name is required.
+        </div>
       </div>
 
       <div class="profile-item">
         <label for="email"><strong>Email:</strong></label>
-        <input type="email" id="email" [(ngModel)]="userProfile.email" name="email">
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="userProfile.email"
+          name="email"
+          required
+        />
+        <div
+          *ngIf="profileForm.submitted && !profileForm.controls['email']?.valid"
+          class="error"
+        >
+          Valid Email is required.
+        </div>
       </div>
 
       <div class="profile-item">
         <label for="numTel"><strong>Phone:</strong></label>
-        <input type="tel" id="numTel" [(ngModel)]="userProfile.num_tel" name="numTel">
+        <input
+          type="tel"
+          id="numTel"
+          [(ngModel)]="userProfile.num_tel"
+          name="numTel"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted && !profileForm.controls['numTel']?.valid
+          "
+          class="error"
+        >
+          Phone number is required.
+        </div>
       </div>
 
       <div class="profile-item">
         <label for="budget"><strong>Budget:</strong></label>
-        <input type="number" id="budget" [(ngModel)]="userProfile.budget" name="budget">
+        <input
+          type="number"
+          id="budget"
+          [(ngModel)]="userProfile.budget"
+          name="budget"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted && !profileForm.controls['budget']?.valid
+          "
+          class="error"
+        >
+          Budget is required.
+        </div>
       </div>
 
       <div class="profile-item">
-        <label for="typelogementprefere"><strong>Preferred Housing Type:</strong></label>
-        <input type="text" id="typelogementprefere" [(ngModel)]="userProfile.typelogementprefere" name="typelogementprefere">
+        <label for="typelogementprefere"
+          ><strong>Preferred Housing Type:</strong></label
+        >
+        <input
+          type="text"
+          id="typelogementprefere"
+          [(ngModel)]="userProfile.typelogementprefere"
+          name="typelogementprefere"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted &&
+            !profileForm.controls['typelogementprefere']?.valid
+          "
+          class="error"
+        >
+          Preferred Housing Type is required.
+        </div>
       </div>
 
       <div class="profile-item">
-        <label for="localisationprefere"><strong>Preferred Location:</strong></label>
-        <input type="text" id="localisationprefere" [(ngModel)]="userProfile.localisationprefere" name="localisationprefere">
+        <label for="localisationprefere"
+          ><strong>Preferred Location:</strong></label
+        >
+        <input
+          type="text"
+          id="localisationprefere"
+          [(ngModel)]="userProfile.localisationprefere"
+          name="localisationprefere"
+          required
+        />
+        <div
+          *ngIf="
+            profileForm.submitted &&
+            !profileForm.controls['localisationprefere']?.valid
+          "
+          class="error"
+        >
+          Preferred Location is required.
+        </div>
       </div>
 
       <div class="profile-item">
         <label for="photo"><strong>Profile Photo:</strong></label>
-        <input type="file" id="photo" (change)="onFileSelected($event)">
+        <input
+          type="file"
+          id="photo"
+          (change)="onFileSelected($event)"
+          required
+        />
+        <div *ngIf="profileForm.submitted && !photoFileValid" class="error">
+          Profile photo is required.
+        </div>
       </div>
-
-      <button type="submit">Save Changes</button>
+      <p *ngIf="profileForm.invalid">Form Invalid</p>
+      <button type="submit" [disabled]="profileForm.invalid">
+        Save Changes
+      </button>
     </form>
   </div>
 </div>

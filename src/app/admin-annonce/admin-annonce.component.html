@@ -1,32 +1,61 @@
+<app-navbar></app-navbar>
+
 <div class="container">
-    <h2>Gestion des Annonces</h2>
-  
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Adresse</th>
-          <th>Prix</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let logement of logements">
-          <td>{{ logement.id }}</td>
-          <td>{{ logement.adresse }}</td>
-          <td>{{ logement.prix }} DT</td>
-          <td>{{ logement.description }}</td>
-          <td>
-            <button
-              class="btn btn-danger"
-              (click)="deleteLogement(logement.id)"
-            >
-              Supprimer
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Gestion des Annonces</h2>
+
+  <div class="filters">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filters.id"
+      placeholder="Filtrer par ID"
+      (input)="applyFilter()"
+    />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filters.adresse"
+      placeholder="Filtrer par Adresse"
+      (input)="applyFilter()"
+    />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filters.prix"
+      placeholder="Filtrer par Prix"
+      (input)="applyFilter()"
+    />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filters.description"
+      placeholder="Filtrer par Description"
+      (input)="applyFilter()"
+    />
   </div>
-  
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Adresse</th>
+        <th>Prix</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let logement of filteredLogements">
+        <td>{{ logement.id }}</td>
+        <td>{{ logement.adresse }}</td>
+        <td>{{ logement.prix }} DT</td>
+        <td>{{ logement.description }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteLogement(logement.id)">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

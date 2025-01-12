@@ -55,6 +55,19 @@
   .table tr:hover {
     background-color: #f1f1f1;
   }
+
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  
+  .filters input {
+    width: 20%;
+    padding: 0.5rem;
+  }
+  
   
   /* Boutons */
   button {

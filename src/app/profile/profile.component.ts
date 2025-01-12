@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
   errorMessage: string = '';
   updateProfile: boolean = false;
   selectedPhoto: File | null = null;
+  photoFileValid: boolean = false;
 
   constructor(private authService: AuthService) {}
 
@@ -33,12 +34,19 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input?.files && input.files.length > 0) {
-      this.selectedPhoto = input.files[0]; // Enregistre le fichier photo sélectionné
+    if (input.files && input.files.length > 0) {
+      this.photoFileValid = true;
+    } else {
+      this.photoFileValid = false;
     }
   }
 
   onSubmit(): void {
+    if (!this.photoFileValid) {
+      alert('Profile photo is required!');
+      return;
+    }
+
     if (!this.userProfile) return;
 
     // Prépare les données du profil sans la photo
@@ -51,17 +59,19 @@ export class ProfileComponent implements OnInit {
 
     console.log(userProfileData);
     // Appel du service en passant à la fois les données du profil et la photo si elle est sélectionnée
-    this.authService.completeUserProfile(userProfileData, this.selectedPhoto).subscribe({
-      next: (response) => {
-        alert('Profil mis à jour avec succès !');
-        this.updateProfile = false;
-        this.getUserProfile(); // Recharger le profil après la mise à jour
-      },
-      error: (error) => {
-        console.error('Erreur lors de la mise à jour du profil :', error);
-        alert('Une erreur est survenue lors de la mise à jour du profil.');
-      },
-    });
+    this.authService
+      .completeUserProfile(userProfileData, this.selectedPhoto)
+      .subscribe({
+        next: (response) => {
+          alert('Profil mis à jour avec succès !');
+          this.updateProfile = false;
+          this.getUserProfile(); // Recharger le profil après la mise à jour
+        },
+        error: (error) => {
+          console.error('Erreur lors de la mise à jour du profil :', error);
+          alert('Une erreur est survenue lors de la mise à jour du profil.');
+        },
+      });
   }
 
   getUserImageSrc(base64Image: string): string {
@@ -81,5 +91,4 @@ export class ProfileComponent implements OnInit {
       return 'data:image/jpeg;base64,' + base64Image;
     }
   }
-
 }
