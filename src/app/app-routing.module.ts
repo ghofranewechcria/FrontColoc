@@ -11,7 +11,7 @@ import { LogementDetailsComponent } from './logement-details/logement-details.co
 import { ColocationHistoriqueComponent} from './historique-colocations/historique-colocations.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AdminAnnonceComponent } from './admin-annonce/admin-annonce.component';
-
+import { AnnoncesComponent } from './annonces/annonces.component';
 
 
 
@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'historique-colocations', component: ColocationHistoriqueComponent },
   {path: 'colocataires' , component: UserListComponent},
   {path: 'admin-annonces' , component: AdminAnnonceComponent},
+  { path: 'mes-annonces', component: AnnoncesComponent },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

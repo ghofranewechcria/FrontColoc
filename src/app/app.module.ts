@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogementComponent } from './logement/logement.component';
 import { LogementListComponent } from './logement-list/logement-list.component';
-import { LogementDetailsComponent } from './logement-details/logement-details.component'; 
+import { LogementDetailsComponent } from './logement-details/logement-details.component';
 import { ColocationHistoriqueComponent } from './historique-colocations/historique-colocations.component';
 import { SliderModule } from 'primeng/slider';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -24,9 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAnnonceComponent } from './admin-annonce/admin-annonce.component';
-
-
-
+import { AnnoncesComponent } from './annonces/annonces.component';
 
 @NgModule({
   declarations: [
@@ -42,13 +40,16 @@ import { AdminAnnonceComponent } from './admin-annonce/admin-annonce.component';
     ColocationHistoriqueComponent,
     MapComponent,
     UserListComponent,
-    AdminAnnonceComponent
+    AdminAnnonceComponent,
+    AnnoncesComponent,
   ],
+
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
     SliderModule,
     AutoCompleteModule,
@@ -56,9 +57,9 @@ import { AdminAnnonceComponent } from './admin-annonce/admin-annonce.component';
     TableModule,
     InputTextModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

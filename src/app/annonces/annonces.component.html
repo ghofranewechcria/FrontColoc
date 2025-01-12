@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <h2>Mes Annonces</h2>
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par ID"
+        [(ngModel)]="filters.id"
+        (input)="applyFilter()"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par Adresse"
+        [(ngModel)]="filters.adresse"
+        (input)="applyFilter()"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par Prix"
+        [(ngModel)]="filters.prix"
+        (input)="applyFilter()"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par Description"
+        [(ngModel)]="filters.description"
+        (input)="applyFilter()"
+      />
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Adresse</th>
+          <th>Prix</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let logement of filteredLogements">
+          <td>{{ logement.id }}</td>
+          <td>{{ logement.adresse }}</td>
+          <td>{{ logement.prix }}</td>
+          <td>{{ logement.description }}</td>
+          <td>
+            <!-- <button class="btn btn-primary btn-sm" (click)="router.navigate(['/update-logement', logement.id])">
+              Modifier
+            </button> -->
+            <button class="btn btn-danger btn-sm" (click)="deleteLogement(logement.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

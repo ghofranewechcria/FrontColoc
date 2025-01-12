@@ -21,4 +21,11 @@ export class AnnonceService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
   }
+
+  getLogementsByOwner(): Observable<any[]> {
+    const token = localStorage.getItem('jwt_token'); // Récupérer le token du localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/by-owner`, { headers });
+  }
+  
 }
