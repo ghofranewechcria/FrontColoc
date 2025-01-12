@@ -1,4 +1,6 @@
 /* Conteneur principal */
+
+
 .logement-page {
   display: flex;
   justify-content: space-between;
@@ -121,6 +123,88 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.filter-icon {
+  font-size: 1.2rem;
+  color: #495057;
+}
+
+.filter-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+::ng-deep .price-slider {
+  width: 100%   ;
+  padding: 0.5rem 0;  /* Un peu d'espace autour */
+  box-sizing: border-box;
+  position: relative;
+}
+::ng-deep .p-slider-range {
+  background-color: #007bff; /* Couleur de la ligne entre les deux curseurs */
+  height: 6px; /* Ajustez la hauteur de la ligne */
+  border-radius: 3px; /* Coins arrondis */
+}
+
+::ng-deep .p-slider .p-slider-handle {
+  width: 20px; /* Taille des curseurs */
+  height: 20px;
+  background-color: #007bff; /* Couleur des curseurs */
+  border-radius: 50%; /* Forme ronde */
+  border: 2px solid #0056b3; /* Bordure du curseur */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); /* Ombre */
+  z-index: 7; /* Niveau au-dessus des autres éléments */
+}
+
+::ng-deep .p-slider .p-slider-handle:hover {
+  background-color: #0056b3;  /* Couleur au survol */
+  border-color: #003f72;  /* Changer la bordure au survol */
+}
+
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #495057;
+}
+
+.btn.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.btn-small:hover {
+  background: #0056b3;
 }
 
 

@@ -12,7 +12,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogementComponent } from './logement/logement.component';
 import { LogementListComponent } from './logement-list/logement-list.component';
-import { LogementDetailsComponent } from './logement-details/logement-details.component'; // Pour les appels HTTP
+import { LogementDetailsComponent } from './logement-details/logement-details.component'; 
+import { ColocationHistoriqueComponent } from './historique-colocations/historique-colocations.component';
+import { SliderModule } from 'primeng/slider';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MapComponent } from './map/map.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { SpinnerModule } from 'primeng/spinner';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,14 +37,24 @@ import { LogementDetailsComponent } from './logement-details/logement-details.co
     ProfileComponent,
     LogementComponent,
     LogementListComponent,
-    LogementDetailsComponent
+    LogementDetailsComponent,
+    ColocationHistoriqueComponent,
+    MapComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule, // Ajouter FormsModule ici
-    HttpClientModule // Ajouter HttpClientModule pour les requêtes API
+    FormsModule, 
+    HttpClientModule,
+    SliderModule,
+    AutoCompleteModule,
+    SpinnerModule,
+    TableModule,
+    InputTextModule,
+    ButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

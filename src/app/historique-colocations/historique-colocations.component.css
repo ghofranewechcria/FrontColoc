@@ -1,0 +1,126 @@
+/* Conteneur principal */
+.container {
+    max-width: 90%;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titre principal */
+  .container h2 {
+    text-align: center;
+    color: #000368;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Messages d'erreur */
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+  }
+  
+  /* Table */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th {
+    background: linear-gradient(to right, #004e92, #000428);
+    color: #fff;
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+  
+  .table th:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  .table th:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  .table td {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    color: #495057;
+    border: 1px solid #dee2e6;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .table tr:hover {
+    background-color: #eef3fb;
+  }
+  
+  /* Statut */
+  .table td:last-child {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .table td:last-child::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  
+  .table td:last-child:contains('Active')::before {
+    background-color: #28a745; /* Vert pour actif */
+  }
+  
+  .table td:last-child:contains('Terminée')::before {
+    background-color: #dc3545; /* Rouge pour terminé */
+  }
+  
+  /* Texte si aucune colocation */
+  p {
+    text-align: center;
+    font-size: 1rem;
+    color: #6c757d;
+  }
+
+  
+  
+  ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    .table th, .table td {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

@@ -1,0 +1,150 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h2 class="text-center">Liste des Colocataires</h2>
+  
+    <!-- Filtre global -->
+    <div class="global-filter">
+      <input
+        type="text"
+        [(ngModel)]="globalFilter"
+        placeholder="Filtrer globalement"
+        class="global-filter-input"
+      />
+    </div>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>
+            <input
+              type="text"
+              [(ngModel)]="filters.firstname"
+              placeholder="Filtrer par prénom"
+              class="column-filter-input"
+            />
+            Prénom
+          </th>
+          <th>
+            <input
+              type="text"
+              [(ngModel)]="filters.lastname"
+              placeholder="Filtrer par nom"
+              class="column-filter-input"
+            />
+            Nom
+          </th>
+          <th>
+            <input
+              type="text"
+              [(ngModel)]="filters.email"
+              placeholder="Filtrer par email"
+              class="column-filter-input"
+            />
+            Email
+          </th>
+          <th>
+            <input
+              type="text"
+              [(ngModel)]="filters.numTel"
+              placeholder="Filtrer par téléphone"
+              class="column-filter-input"
+            />
+            Téléphone
+          </th>
+         <!-- Colonne Budget -->
+<th>
+    <input
+      type="text"
+      [(ngModel)]="filters.budget"
+      placeholder="Filtrer par budget"
+      class="column-filter-input"
+    />
+    Budget
+  </th>
+  
+  <!-- Colonne Type Logement -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.typelogementprefere"
+      placeholder="Filtrer par type de logement"
+      class="column-filter-input"
+    />
+    Type Logement
+  </th>
+  
+  <!-- Colonne Localisation Préférée -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.localisationprefere"
+      placeholder="Filtrer par localisation"
+      class="column-filter-input"
+    />
+    Localisation Préférée
+  </th>
+  
+  <!-- Colonne Âge -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.age"
+      placeholder="Filtrer par âge"
+      class="column-filter-input"
+    />
+    Âge
+  </th>
+  
+  <!-- Colonne Sexe -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.sexe"
+      placeholder="Filtrer par sexe"
+      class="column-filter-input"
+    />
+    Sexe
+  </th>
+  
+  <!-- Colonne Fumeur -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.fumeur"
+      placeholder="Filtrer par fumeur"
+      class="column-filter-input"
+    />
+    Fumeur
+  </th>
+  
+  <!-- Colonne Animaux Acceptés -->
+  <th>
+    <input
+      type="text"
+      [(ngModel)]="filters.animauxAcceptes"
+      placeholder="Filtrer par animaux acceptés"
+      class="column-filter-input"
+    />
+    Animaux Acceptés
+  </th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers()">
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.numTel }}</td>
+          <td>{{ user.budget }} DT</td>
+          <td>{{ user.typelogementprefere }}</td>
+          <td>{{ user.localisationprefere }}</td>
+          <td>{{ user.age }}</td>
+          <td>{{ user.sexe }}</td>
+          <td>{{ user.fumeur ? 'Oui' : 'Non' }}</td>
+          <td>{{ user.animauxAcceptes ? 'Oui' : 'Non' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

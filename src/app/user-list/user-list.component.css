@@ -1,0 +1,86 @@
+/* Conteneur principal */
+.container {
+    max-width: 90%;
+    margin: auto;
+    margin-top : 20px;
+    padding: 2rem;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titre principal */
+  .container h2 {
+    text-align: center;
+    color: #001ba4;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  /* Tableau */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th,
+  .table td {
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #004e92;
+    color: #fff; 
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .table td {
+    background-color: #fff;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
+ 
+  
+  
+  
+  
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    .table th, .table td {
+      font-size: 0.85rem;
+      padding: 0.8rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .p-paginator .p-paginator-page {
+      font-size: 0.9rem;
+      padding: 5px 10px;
+    }
+  }
+  

@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h2>Colocations Actuelles</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <table class="table table-bordered table-striped mt-3" *ngIf="colocationsActuelles.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Logement (Description)</th>
+        <th>Prix</th>
+        <th>Statut</th>
+        <th>Colocataires</th>
+        <th>Actions</th> <!-- Nouvelle colonne pour les actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let colocation of colocationsActuelles; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ colocation.logementDescription }}</td>
+        <td>{{ colocation.logementPrix }} DT</td>
+        <td>{{ colocation.active ? 'Active' : 'Terminée' }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let colocataire of colocation.colocataires">
+              {{ colocataire.firstname }} {{ colocataire.lastname }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <button (click)="annulerColocation(colocation)">Annuler</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="colocationsActuelles.length === 0 && !errorMessage">
+    Aucune colocation actuelle trouvée.
+  </p>
+
+  <h2 class="mt-5">Historique des Colocations</h2>
+
+  <table class="table table-bordered table-striped mt-3" *ngIf="colocationsHistorique.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Logement (Description)</th>
+        <th>Prix</th>
+        <th>Statut</th>
+        <th>Colocataires</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let colocation of colocationsHistorique; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ colocation.logementDescription }}</td>
+        <td>{{ colocation.logementPrix }} DT</td>
+        <td>{{ colocation.active ? 'Active' : 'Terminée' }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let colocataire of colocation.colocataires">
+              {{ colocataire.firstname }} {{ colocataire.lastname }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="colocationsHistorique.length === 0 && !errorMessage">
+    Aucun historique de colocation trouvé.
+  </p>
+</div>

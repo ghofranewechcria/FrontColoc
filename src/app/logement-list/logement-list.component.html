@@ -4,16 +4,60 @@
   <!-- Partie gauche : Liste des logements -->
   <div class="logement-list">
     <h2>Liste des logements</h2>
-    <div *ngFor="let logement of logements" class="logement-container">
+
+    <div class="filters">
+      <!-- Adresse avec icône -->
+      <div class="filter-item">
+        <i class="fas fa-map-marker-alt filter-icon"></i>
+        <input
+          type="text"
+          [(ngModel)]="filterAdresse"
+          placeholder="Filtrer par adresse"
+          class="filter-input"
+        />
+      </div>
+
+      <div class="filter-item">
+        <label for="price-range">Prix : </label>
+        <p-slider
+          [(ngModel)]="filterPrixRange"
+          [min]="0"
+          [max]="5000"
+          [range]="true"
+          styleClass="price-slider"
+          [step]="50"
+          (ngModelChange)="applyFilters()"
+        ></p-slider>
+        <div class="price-values">
+          <span>{{ filterPrixRange[0] }} DT</span>
+          <span>{{ filterPrixRange[1] }} DT</span>
+        </div>
+      </div>
+
+      <div class="filter-item">
+        <p-autoComplete
+          [(ngModel)]="filterEquipDispo"
+          [suggestions]="equipSuggestions"
+          (completeMethod)="filterEquipements($event)"
+          placeholder="Équipement"
+          field="equipDispo"
+          class="filter-input"
+        ></p-autoComplete>
+      </div>
+
+      <button (click)="applyFilters()" class="btn btn-secondary">
+        Appliquer les filtres
+      </button>
+    </div>
+
+    <div *ngFor="let logement of filteredLogements" class="logement-container">
       <div class="logement">
         <div class="header">
           <span class="availability">
             <p><i class="fas fa-map-marker-alt"></i> {{ logement.adresse }}</p>
           </span>
           <h3>{{ logement.description }}</h3>
-
           <span class="price">{{ logement.prix }} DT</span>
-
         </div>
 
         <div class="content">
@@ -36,11 +80,7 @@
             </p>
           </div>
 
-          <!-- Affichage des images -->
-          <div
-            *ngIf="logement.photoUrls && logement.photoUrls.length > 0"
-            class="photo-container"
-          >
+          <div *ngIf="logement.photoUrls?.length > 0" class="photo-container">
             <div *ngFor="let photo of logement.photoUrls">
               <img
                 [src]="'http://localhost:8082/api' + photo"
@@ -50,17 +90,22 @@
           </div>
         </div>
         <div class="details-button">
-          <button [routerLink]="['/logement/details', logement.id]" class="btn btn-primary">
+          <button
+            [routerLink]="['/logement/details', logement.id]"
+            class="btn btn-primary"
+          >
             Voir les détails
           </button>
-          
         </div>
       </div>
     </div>
   </div>
+  <app-map [logements]="logementsWithCoordinates"></app-map>
 
   <!-- Partie droite : Formulaire de création -->
   <div class="logement-form">
     <app-logement></app-logement>
   </div>
 </div>
+
+
