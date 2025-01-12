@@ -28,4 +28,10 @@ export class AnnonceService {
     return this.http.get<any[]>(`${this.apiUrl}/by-owner`, { headers });
   }
   
+  updateLogement(id: number, logement: any): Observable<any> {
+    const token = localStorage.getItem('jwt_token'); // Récupérer le token pour l'authentification
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`http://localhost:8082/api/logement/${id}`, logement, { headers });
+  }
+  
 }

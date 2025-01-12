@@ -11,6 +11,7 @@ export class AnnoncesComponent implements OnInit {
   logements: any[] = []; // Liste des logements à afficher
   filteredLogements: any[] = []; // Liste des logements filtrés
   filters: any = { id: '', adresse: '', prix: '', description: '' }; // Filtrage par colonne
+  logementToEdit: any = null; // Logement sélectionné pour modification
 
   constructor(private annonceService: AnnonceService, private router: Router) {}
 
@@ -57,6 +58,30 @@ export class AnnoncesComponent implements OnInit {
     });
   
   }
+
+  editLogement(logement: any): void {
+    this.logementToEdit = { ...logement }; // Clone du logement pour édition
+  }
+  
+  updateLogement(): void {
+    if (this.logementToEdit) {
+      this.annonceService.updateLogement(this.logementToEdit.id, this.logementToEdit).subscribe(
+        (updatedLogement: any) => {
+          const index = this.logements.findIndex((logement) => logement.id === updatedLogement.id);
+          if (index !== -1) {
+            this.logements[index] = updatedLogement;
+          }
+          this.logementToEdit = null; // Fermer le formulaire
+          this.applyFilter();
+        },
+        (error: any) => {
+          console.error('Erreur lors de la mise à jour du logement', error);
+        }
+      );
+    }
+  }
+  
+  
 
  
 }
